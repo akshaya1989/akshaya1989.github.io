@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const timeline = [
+  { years: '2023 – Present', role: 'Principal / Staff Architect', org: 'Company Name', summary: 'One-line description...' },
+  { years: '2019 – 2023', role: 'Senior Software Architect', org: 'Company Name', summary: 'One-line description...' },
+  { years: '2015 – 2019', role: 'Senior Engineer &rarr; Tech Lead', org: 'Company Name', summary: 'One-line description...' },
+  { years: '2011 – 2015', role: 'Software Engineer', org: 'Company Name', summary: 'One-line description...' }
+];
+
+const skills = {
+  'Architecture': ['Distributed Systems', 'Microservices', 'Event-Driven Design', 'API Design'],
+  'Cloud & Infra': ['AWS', 'Kubernetes', 'Terraform', 'CI/CD'],
+  'Languages': ['TypeScript', 'Java', 'Python', 'Go'],
+  'Leadership': ['Tech Strategy', 'Mentoring', 'Cross-team Alignment']
+};
+---
+
+<BaseLayout title="Resume">
+  <h1>Resume</h1>
+  <p>
+    10+ years designing and building software systems. Full case studies live
+    in the <a href="/blog">blog</a>. Download the static version below.
+  </p>
+  <p><a href="/akshay-resume.pdf">Download PDF &rarr;</a></p>
+
+  <h2>Experience</h2>
+  <div class="resume-timeline">
+    {timeline.map((role) => (
+      <div class="resume-entry">
+        <div class="resume-date">
+          {role.years}
+        </div>
+        <h3>{role.role} · {role.org}</h3>
+        <p>{role.summary}</p>
+      </div>
+    ))}
+  </div>
+
+  <h2>Skills</h2>
+  <div class="resume-skills">
+    {Object.entries(skills).map(([category, skillList]) => (
+      <div>
+        <h3>{category}</h3>
+        <ul>
+          {skillList.map((skill) => (
+            <li>{skill}</li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+</BaseLayout>

@@ -1,0 +1,412 @@
+/* iamakshay.dev - Design Tokens
+Concept: technical drafting / blueprint. The site is a set of
+"sheets" (posts, notes, journal entries) each carrying a title
+block like a real architectural drawing - sheet number, revision,
+type. Structure encodes real metadata, not decoration.
+================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@... /* cut off */');
+
+:root {
+  /* Color */
+  --ink-navy: #0f1d2e;          /* primary background, dark */
+  --ink-navy-raised: #142840;   /* cards / raised panels on dark */
+  --paper: #f3f1e7;             /* light surface, used sparingly */
+  --blueprint-cyan: #4fa9d8;    /* line work, links, hover */
+  --drafting-amber: #e8a33d;    /* accent, CTA, active states */
+  --slate: #a9b7c6;             /* secondary text on dark */
+  --paper-ink: #182430;         /* body text on paper */
+  --hairline: rgba(169, 183, 198, 0.22);
+
+  /* Type */
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'IBM Plex Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  --step--1: 0.875rem;
+  --step-0: 1rem;
+  --step-1: 1.25rem;
+  --step-2: 1.75rem;
+  --step-3: 2.5rem;
+  --step-4: 3.5rem;
+
+  --content-width: 72rem;
+  --radius: 2px; /* drafting is precise, not rounded */
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  font-family: var(--font-body);
+  line-height: 1.6;
+  color: var(--paper);
+  background: radial-gradient(circle at top left, rgba(79, 169, 216, 0.14), transparent 28%),
+              linear-gradient(180deg, #0c1522 0%, #0f1d2e 100%);
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+button, input, select, textarea {
+  font: inherit;
+}
+
+a {
+  color: var(--blueprint-cyan);
+  text-decoration: none;
+}
+
+a:hover,
+button:hover {
+  color: #90d5ff;
+}
+
+.wrap {
+  width: min(100% - 2rem, var(--content-width));
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 1200px) {
+  .wrap {
+    padding: 0 2rem;
+  }
+}
+
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(15, 29, 46, 0.95);
+  border-bottom: 1px solid rgba(169, 183, 198, 0.12);
+  backdrop-filter: blur(10px);
+}
+
+.site-nav .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.site-nav .brand {
+  display: inline-flex;
+  color: var(--paper);
+  font-family: var(--font-display);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.95rem;
+}
+
+.site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.site-nav a {
+  color: var(--slate);
+  font-size: 0.95rem;
+}
+
+.site-nav a.active,
+.site-nav a:hover {
+  color: var(--paper);
+}
+
+main.wrap {
+  padding: 4rem 0 6rem;
+}
+
+section {
+  margin-top: 3rem;
+}
+
+.hero {
+  padding: 5rem 0 3rem;
+  max-width: 72rem;
+}
+
+.hero h1 {
+  font-size: clamp(4rem, 8vw, 6.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.25rem;
+}
+
+.hero p {
+  max-width: 54rem;
+}
+
+.hero a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--blueprint-cyan);
+  border: 1px solid rgba(79, 169, 216, 0.45);
+  padding: 0.95rem 1.25rem;
+  border-radius: 0.35rem;
+}
+
+.hero a:hover {
+  color: #a1d7ff;
+  border-color: rgba(161, 215, 255, 0.65);
+}
+
+.page,
+.resume-skills,
+.resume-timeline {
+  display: grid;
+  gap: 1rem;
+  padding: 2rem 0;
+}
+
+.page {
+  gap: 1.25rem;
+}
+
+.post,
+article,
+.post-content {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.post-header {
+  padding: 1rem 0;
+}
+
+.post-meta {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--slate);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.post-content {
+  line-height: 1.8;
+}
+
+.post-content h2,
+.post-content h3,
+.post-content h4 {
+  color: var(--paper);
+}
+
+.post-content p,
+.post-content li,
+.post-content blockquote {
+  color: rgba(243, 241, 231, 0.92);
+}
+
+.post-content a {
+  color: var(--blueprint-cyan);
+  text-decoration: underline;
+}
+
+.post-content a:hover {
+  color: #a1d7ff;
+}
+
+.post-content ul,
+.post-content ol {
+  padding-left: 1.25rem;
+}
+
+.post-content pre {
+  background: rgba(15, 29, 46, 0.9);
+  border: 1px solid rgba(169, 183, 198, 0.18);
+  border-radius: 0.35rem;
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+.post-content code {
+  background: rgba(169, 183, 198, 0.1);
+  padding: 0.15rem 0.3rem;
+  border-radius: 0.25rem;
+}
+
+.title-block {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid rgba(169, 183, 198, 0.14);
+  background: rgba(20, 40, 64, 0.92);
+  border-radius: 0.35rem;
+  margin: 2rem 0;
+}
+
+.title-block div {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.title-block .label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: var(--slate);
+}
+
+.title-block span {
+  color: var(--paper);
+  font-weight: 600;
+}
+
+.page p,
+.resume-entry p,
+.resume-skills li,
+.entry-list p {
+  color: rgba(243, 241, 231, 0.92);
+}
+
+.resume-entry {
+  border-bottom: 1px solid var(--hairline);
+  padding: 1.25rem 0;
+}
+
+.resume-date {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--drafting-amber);
+  margin-bottom: 0.6rem;
+}
+
+.resume-entry h3 {
+  margin-bottom: 0.3rem;
+}
+
+.resume-entry p {
+  margin: 0;
+}
+
+.resume-skills > div {
+  margin-bottom: 1.25rem;
+}
+
+.resume-skills h3 {
+  margin-bottom: 0.5rem;
+}
+
+.resume-skills ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.resume-skills li {
+  margin-bottom: 0.25rem;
+}
+
+.hero p {
+  max-width: 34rem;
+  font-size: var(--step-1);
+  color: var(--paper);
+}
+
+.hero .eyebrow {
+  font-family: var(--font-mono);
+  color: var(--drafting-amber);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  margin-bottom: 1.25rem;
+}
+
+.hero a {
+  color: var(--blueprint-cyan);
+  border-bottom: 1px solid rgba(79, 169, 216, 0.4);
+}
+
+.hero a:hover {
+  color: #a1d7ff;
+}
+
+h1, h2, h3, h4, h5 {
+  margin: 0 0 1rem;
+  color: var(--paper);
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  line-height: 1.02;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+p {
+  margin: 0 0 1.25rem;
+}
+
+.site-footer {
+  padding: 2rem 0 3rem;
+  color: var(--slate);
+}
+
+.site-footer a {
+  color: var(--blueprint-cyan);
+}
+
+.entry-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1.75rem;
+}
+
+.entry-list li {
+  padding: 1.75rem 1.5rem;
+  border: 1px solid rgba(169, 183, 198, 0.14);
+  background: rgba(20, 40, 64, 0.85);
+  border-radius: 0.35rem;
+}
+
+.entry-list .meta {
+  color: var(--slate);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.entry-list h3 {
+  margin-bottom: 0.6rem;
+}
+
+.entry-list h3 a {
+  color: var(--paper);
+}
+
+@media (max-width: 720px) {
+  .site-nav .wrap,
+  main.wrap,
+  .site-footer .wrap {
+    width: min(100% - 1.5rem, var(--content-width));
+  }
+
+  .site-nav ul {
+    gap: 0.75rem;
+  }
+}

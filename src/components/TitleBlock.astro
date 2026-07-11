@@ -1,0 +1,31 @@
+---
+interface Props {
+  sheet?: string;
+  type: string; // "BLOG", "JOURNAL", "TECH NOTE"
+  date: Date;
+  topic?: string;
+}
+
+const { sheet, type, date, topic } = Astro.props;
+const formatted = date.toLocaleDateString('en-US', { year: 'numeric' /* ... cut off ... */ });
+---
+<div class="title-block">
+  <div>
+    <span class="label">Sheet</span>
+    {sheet ?? '-'}
+  </div>
+  <div>
+    <span class="label">Type</span>
+    {type}
+  </div>
+  <div>
+    <span class="label">Rev. Date</span>
+    {formatted}
+  </div>
+  {topic && (
+    <div>
+      <span class="label">Topic</span>
+      {topic}
+    </div>
+  )}
+</div>

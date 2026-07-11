@@ -1,0 +1,44 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} · iamakshay.dev</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <nav class="site-nav">
+      <div class="wrap">
+        <a href="/" class="brand">iamakshay.dev</a>
+        <ul>
+          <li><a href="/blog" class={currentPath.startsWith('/blog') ? 'active' : ''}>Blog</a></li>
+          <li><a href="/journal" class={currentPath.startsWith('/journal') ? 'active' : ''}>Journal</a></li>
+          <li><a href="/tech-notes" class={currentPath.startsWith('/tech-notes') ? 'active' : ''}>Tech Notes</a></li>
+          <li><a href="/resume" class={currentPath.startsWith('/resume') ? 'active' : ''}>Resume</a></li>
+          <li><a href="/about" class={currentPath.startsWith('/about') ? 'active' : ''}>About</a></li>
+        </ul>
+      </div>
+    </nav>
+    <main class="wrap">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="wrap">
+        <span>&copy; {new Date().getFullYear()} Akshay.  · <a href="/rss.xml">...</a></span>
+      </div>
+    </footer>
+  </body>
+</html>
