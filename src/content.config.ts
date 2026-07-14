@@ -1,7 +1,8 @@
 import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
 
 const blogs = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/blogs' }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -13,7 +14,7 @@ const blogs = defineCollection({
 });
 
 const journal = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/journal' }),
   schema: z.object({
     title: z.string(),
     pubDate: z.date(),
@@ -24,7 +25,7 @@ const journal = defineCollection({
 });
 
 const techNotes = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/tech-notes' }),
   schema: z.object({
     title: z.string(),
     description: z.string().optional(),
@@ -35,8 +36,9 @@ const techNotes = defineCollection({
     draft: z.boolean().default(false),
   }),
 });
+
 export const collections = {
-    blogs: blogs,
-    journal,
-    'tech-notes': techNotes
+  blogs,
+  journal,
+  'tech-notes': techNotes,
 };
