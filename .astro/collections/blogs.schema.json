@@ -1,7 +1,7 @@
 {
-  "$ref": "#/definitions/tech-notes",
+  "$ref": "#/definitions/blogs",
   "definitions": {
-    "tech-notes": {}
+    "blogs": {}
   },
   "$schema": "http://json-schema.org/draft-07/schema#"
 }
